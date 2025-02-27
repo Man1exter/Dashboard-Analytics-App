@@ -84,7 +84,7 @@ class User(UserMixin, db.Model):
         return token
     
     def confirm_email(self, token):
-        """Potwierdza adres e-mail"""
+        """Potwierdza address e-mail"""
         if self.email_confirmation_token is None or token != self.email_confirmation_token:
             return False
         self.email_confirmed = True
