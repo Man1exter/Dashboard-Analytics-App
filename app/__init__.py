@@ -73,6 +73,10 @@ def create_app(config_class="config.DevelopmentConfig"):
     from app.assets import compile_assets
     compile_assets(assets)
     
+    # Importowanie funkcji CLI
+    from app.cli import register as register_cli
+    register_cli(app)
+    
     return app
 
 # Import modeli aby były dostępne dla migracji
