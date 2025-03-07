@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ dashboard.title }}</h1>
+    <p>{{ dashboard.description }}</p>
+    <a href="{{ url_for('dashboard.edit_dashboard', dashboard_id=dashboard.id) }}">Edytuj</a>
+    <form method="POST" action="{{ url_for('dashboard.delete_dashboard', dashboard_id=dashboard.id) }}">
+        <button type="submit">Usuń</button>
+    </form>
+    <h2>Widgety</h2>
+    <ul>
+        {% for widget in widgets %}
+            <li>{{ widget.title }} - {{ widget.widget_type }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('dashboard.add_widget', dashboard_id=dashboard.id) }}">Dodaj widget</a>
+</body>
+</html>

@@ -1,5 +1,5 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify, current_app
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user, login_user, logout_user
 from app import db, cache
 from app.dashboard import bp
 from app.dashboard.models import Dashboard, Widget, DataSource, DashboardCollaborator
