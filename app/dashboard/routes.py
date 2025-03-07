@@ -1,5 +1,5 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify, current_app
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user, login_user, logout_user
 from app import db, cache
 from app.dashboard import bp
 from app.dashboard.models import Dashboard, Widget, DataSource
@@ -397,3 +397,25 @@ def add_data_source():
         title='Dodaj źródło danych',
         form=form
     )
+
+
+@bp.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        user = User.query.filter_by(email=email).first()
+        if user is None or not user.check_password(password):
+            flash('Invalid email or password')
+            return redirect(url_for('auth.login'))
+        login_user(user)
+        return redirect(url_for('main.index'))
+    return render_template('auth/login.html', title='Sign In')
+
+@bp.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('main.index'))

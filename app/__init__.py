@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
@@ -19,6 +19,8 @@ csrf = CSRFProtect()
 cache = Cache()
 compress = Compress()
 assets = Environment()
+
+bp = Blueprint('auth', __name__)
 
 def create_app(config_class="config.DevelopmentConfig"):
     """Fabryka aplikacji - tworzy i konfiguruje aplikację Flask"""
@@ -82,3 +84,5 @@ def create_app(config_class="config.DevelopmentConfig"):
 # Import modeli aby były dostępne dla migracji
 from app.auth.models import User
 from app.dashboard.models import Dashboard, Widget, DataSource
+
+from app.auth import routes

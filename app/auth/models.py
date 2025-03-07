@@ -27,6 +27,7 @@ class User(UserMixin, db.Model):
     last_login = db.Column(db.DateTime, default=None)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    settings = db.Column(db.String(256))
     
     # Relacje
     dashboards = db.relationship('Dashboard', backref='author', lazy='dynamic')
