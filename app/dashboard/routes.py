@@ -1,14 +1,12 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify, current_app
-from flask_login import login_required, current_user, login_user, logout_user
+from flask_login import login_required, current_user
 from app import db, cache
 from app.dashboard import bp
-from app.dashboard.models import Dashboard, Widget, DataSource
+from app.dashboard.models import Dashboard, Widget, DataSource, DashboardCollaborator
 from app.dashboard.forms import DashboardForm, WidgetForm, DataSourceForm, ShareDashboardForm
 from app.auth.models import User
-from werkzeug.exceptions import NotFound, Forbidden
 from sqlalchemy import desc
 import json
-
 
 @bp.route('/')
 @login_required
@@ -27,7 +25,6 @@ def index():
         dashboards=dashboards,
         shared_dashboards=shared_dashboards
     )
-
 
 @bp.route('/create', methods=['GET', 'POST'])
 @login_required
@@ -57,7 +54,6 @@ def create_dashboard():
         themes=current_app.config['DASHBOARD_THEMES']
     )
 
-
 @bp.route('/<int:dashboard_id>')
 @login_required
 def view(dashboard_id):
@@ -86,7 +82,6 @@ def view(dashboard_id):
         dashboard=dashboard,
         widgets=widgets
     )
-
 
 @bp.route('/<int:dashboard_id>/edit', methods=['GET', 'POST'])
 @login_required
@@ -126,7 +121,6 @@ def edit_dashboard(dashboard_id):
         themes=current_app.config['DASHBOARD_THEMES']
     )
 
-
 @bp.route('/<int:dashboard_id>/delete', methods=['POST'])
 @login_required
 def delete_dashboard(dashboard_id):
@@ -145,7 +139,6 @@ def delete_dashboard(dashboard_id):
     
     flash('Dashboard został usunięty.', 'success')
     return redirect(url_for('dashboard.index'))
-
 
 @bp.route('/<int:dashboard_id>/widget/add', methods=['GET', 'POST'])
 @login_required
@@ -200,7 +193,6 @@ def add_widget(dashboard_id):
         dashboard=dashboard
     )
 
-
 @bp.route('/widget/<int:widget_id>/edit', methods=['GET', 'POST'])
 @login_required
 def edit_widget(widget_id):
@@ -251,7 +243,6 @@ def edit_widget(widget_id):
         dashboard=dashboard
     )
 
-
 @bp.route('/widget/<int:widget_id>/delete', methods=['POST'])
 @login_required
 def delete_widget(widget_id):
@@ -273,7 +264,6 @@ def delete_widget(widget_id):
     
     flash('Widget został usunięty.', 'success')
     return redirect(url_for('dashboard.view', dashboard_id=dashboard.id))
-
 
 @bp.route('/<int:dashboard_id>/share', methods=['GET', 'POST'])
 @login_required
@@ -302,7 +292,6 @@ def share_dashboard(dashboard_id):
             flash(f'Zaktualizowano uprawnienia dla {user.email}.', 'success')
         else:
             # Dodaj współpracownika
-            from app.dashboard.models import DashboardCollaborator
             collaborator = DashboardCollaborator(
                 dashboard_id=dashboard_id,
                 user_id=user.id,
@@ -332,7 +321,6 @@ def share_dashboard(dashboard_id):
         collaborators=collaborators
     )
 
-
 @bp.route('/data_sources')
 @login_required
 def data_sources():
@@ -343,7 +331,6 @@ def data_sources():
         title='Źródła danych',
         data_sources=sources
     )
-
 
 @bp.route('/data_source/add', methods=['GET', 'POST'])
 @login_required
@@ -397,7 +384,6 @@ def add_data_source():
         title='Dodaj źródło danych',
         form=form
     )
-
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
