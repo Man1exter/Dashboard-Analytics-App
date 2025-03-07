@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>Dodaj widget</h1>
+    <form method="POST" action="{{ url_for('dashboard.add_widget', dashboard_id=dashboard.id) }}">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.title.label }}<br>
+            {{ form.title(size=32) }}<br>
+            {% for error in form.title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.widget_type.label }}<br>
+            {{ form.widget_type() }}<br>
+            {% for error in form.widget_type.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.chart_type.label }}<br>
+            {{ form.chart_type() }}<br>
+            {% for error in form.chart_type.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.width.label }}<br>
+            {{ form.width() }}<br>
+            {% for error in form.width.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.height.label }}<br>
+            {{ form.height() }}<br>
+            {% for error in form.height.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.data_source_id.label }}<br>
+            {{ form.data_source_id() }}<br>
+            {% for error in form.data_source_id.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.query.label }}<br>
+            {{ form.query(rows=4, cols=32) }}<br>
+            {% for error in form.query.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.settings.label }}<br>
+            {{ form.settings() }}<br>
+            {% for error in form.settings.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>Dodaj źródło danych</h1>
+    <form method="POST" action="{{ url_for('dashboard.add_data_source') }}">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}<br>
+            {% for error in form.name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.description.label }}<br>
+            {{ form.description(rows=4, cols=32) }}<br>
+            {% for error in form.description.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.source_type.label }}<br>
+            {{ form.source_type() }}<br>
+            {% for error in form.source_type.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.refresh_rate.label }}<br>
+            {{ form.refresh_rate() }}<br>
+            {% for error in form.refresh_rate.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.db_type.label }}<br>
+            {{ form.db_type() }}<br>
+            {% for error in form.db_type.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.db_host.label }}<br>
+            {{ form.db_host(size=32) }}<br>
+            {% for error in form.db_host.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.db_port.label }}<br>
+            {{ form.db_port() }}<br>
+            {% for error in form.db_port.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.db_name.label }}<br>
+            {{ form.db_name(size=32) }}<br>
+            {% for error in form.db_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.db_username.label }}<br>
+            {{ form.db_username(size=32) }}<br>
+            {% for error in form.db_username.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.db_password.label }}<br>
+            {{ form.db_password(size=32) }}<br>
+            {% for error in form.db_password.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.file_path.label }}<br>
+            {{ form.file_path(size=32) }}<br>
+            {% for error in form.file_path.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.file_type.label }}<br>
+            {{ form.file_type() }}<br>
+            {% for error in form.file_type.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.api_url.label }}<br>
+            {{ form.api_url(size=32) }}<br>
+            {% for error in form.api_url.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.api_auth_type.label }}<br>
+            {{ form.api_auth_type() }}<br>
+            {% for error in form.api_auth_type.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.api_headers.label }}<br>
+            {{ form.api_headers(rows=4, cols=32) }}<br>
+            {% for error in form.api_headers.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.api_params.label }}<br>
+            {{ form.api_params(rows=4, cols=32) }}<br>
+            {% for error in form.api_params.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>

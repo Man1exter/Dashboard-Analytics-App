@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>Źródła danych</h1>
+    <a href="{{ url_for('dashboard.add_data_source') }}">Dodaj nowe źródło danych</a>
+    <ul>
+        {% for source in data_sources %}
+            <li>{{ source.name }} - {{ source.source_type }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

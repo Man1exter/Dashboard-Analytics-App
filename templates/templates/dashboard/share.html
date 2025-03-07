@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>Udostępnij dashboard</h1>
+    <form method="POST" action="{{ url_for('dashboard.share_dashboard', dashboard_id=dashboard.id) }}">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.email.label }}<br>
+            {{ form.email(size=32) }}<br>
+            {% for error in form.email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.permission_level.label }}<br>
+            {{ form.permission_level() }}<br>
+            {% for error in form.permission_level.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <h2>Współpracownicy</h2>
+    <ul>
+        {% for collaborator in collaborators %}
+            <li>{{ collaborator.user.email }} - {{ collaborator.permission_level }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
