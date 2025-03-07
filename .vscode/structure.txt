@@ -1,0 +1,50 @@
+Dashboard Analytics App/
+├── app/
+│   ├── __init__.py
+│   ├── auth/
+│   │   ├── __init__.py
+│   │   ├── models.py
+│   │   ├── routes.py
+│   ├── dashboard/
+│   │   ├── __init__.py
+│   │   ├── models.py
+│   │   ├── routes.py
+│   │   ├── forms.py
+│   ├── data/
+│   │   ├── __init__.py
+│   │   ├── routes.py
+│   ├── main/
+│   │   ├── __init__.py
+│   │   ├── routes.py
+│   ├── api/
+│   │   ├── __init__.py
+│   │   ├── routes.py
+│   ├── errors/
+│   │   ├── __init__.py
+│   │   ├── handlers.py
+│   ├── assets.py
+│   ├── cli.py
+├── templates/
+│   ├── auth/
+│   │   ├── login.html
+│   ├── dashboard/
+│   │   ├── index.html
+│   │   ├── create.html
+│   │   ├── view.html
+│   │   ├── edit.html
+│   │   ├── widget_add.html
+│   │   ├── widget_edit.html
+│   │   ├── data_sources.html
+│   │   ├── data_source_add.html
+│   │   ├── share.html
+│   ├── data/
+│   │   ├── index.html
+│   ├── main/
+│   │   ├── index.html
+│   │   ├── settings.html
+│   ├── errors/
+│   │   ├── 404.html
+│   │   ├── 500.html
+├── run.py
+├── config.py
+├── requirements.txt
