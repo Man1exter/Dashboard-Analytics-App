@@ -1,0 +1,10 @@
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+Flask-Login
+Flask-Mail
+Flask-CORS
+Flask-WTF
+Flask-Caching
+Flask-Compress
+Flask-Assets

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>Ustawienia użytkownika</h1>
+    <form method="POST" action="{{ url_for('main.settings') }}">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.new_setting.label }}<br>
+            {{ form.new_setting(size=32) }}<br>
+            {% for error in form.new_setting.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</body>
+</html>

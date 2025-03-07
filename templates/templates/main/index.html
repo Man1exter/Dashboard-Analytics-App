@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>Dashboard Analytics - Zaawansowane wizualizacje danych</h1>
+    <p>Witamy w aplikacji Dashboard Analytics. Zaloguj się, aby uzyskać dostęp do swoich dashboardów.</p>
+    
+    <h2>Przykładowe publiczne dashboardy</h2>
+    <ul>
+        {% for dashboard in sample_dashboards %}
+            <li><a href="{{ url_for('dashboard.view', dashboard_id=dashboard.id) }}">{{ dashboard.title }}</a></li>
+        {% endfor %}
+    </ul>
+    
+    <p><a href="{{ url_for('auth.login') }}">Zaloguj się</a></p>
+</body>
+</html>

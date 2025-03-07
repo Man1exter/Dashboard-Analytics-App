@@ -1,0 +1,11 @@
+<p>
+    {{ form.api_params.label }}<br>
+    {{ form.api_params(rows=4, cols=32) }}<br>
+    {% for error in form.api_params.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+</p>
+<p>{{ form.submit() }}</p>
+</form>
+</body>
+</html>
