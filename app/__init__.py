@@ -18,7 +18,7 @@ mail = Mail()
 csrf = CSRFProtect()
 cache = Cache()
 compress = Compress()
-assets = Environment()
+assets_env = Environment()
 
 def create_app(config_class="config.DevelopmentConfig"):
     """Fabryka aplikacji - tworzy i konfiguruje aplikację Flask"""
@@ -35,7 +35,7 @@ def create_app(config_class="config.DevelopmentConfig"):
     csrf.init_app(app)
     cache.init_app(app)
     compress.init_app(app)
-    assets.init_app(app)
+    assets_env.init_app(app)
     
     # Konfiguracja CORS
     CORS(app)
@@ -71,7 +71,7 @@ def create_app(config_class="config.DevelopmentConfig"):
     
     # Kompilacja assetów (CSS, JS)
     from app.assets import compile_assets
-    compile_assets(assets)
+    compile_assets(assets_env)
     
     # Importowanie funkcji CLI
     from app.cli import register as register_cli

@@ -19,7 +19,7 @@ class Dashboard(db.Model):
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
     
     # Relacje
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     widgets = db.relationship('Widget', backref='dashboard', lazy='dynamic', cascade='all, delete-orphan')
     
     # Uprawnienia dostępu innych użytkowników
@@ -52,7 +52,7 @@ class Widget(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     # Relacje
-    dashboard_id = db.Column(db.Integer, db.ForeignKey('dashboard.id'))
+    dashboard_id = db.Column(db.Integer, db.ForeignKey('dashboards.id'))
     data_source_id = db.Column(db.Integer, db.ForeignKey('data_sources.id'))
     
     def __repr__(self):
@@ -87,8 +87,8 @@ class DashboardCollaborator(db.Model):
     __tablename__ = 'dashboard_collaborators'
     
     id = db.Column(db.Integer, primary_key=True)
-    dashboard_id = db.Column(db.Integer, db.ForeignKey('dashboard.id'), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    dashboard_id = db.Column(db.Integer, db.ForeignKey('dashboards.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     permission_level = db.Column(db.String(64))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     

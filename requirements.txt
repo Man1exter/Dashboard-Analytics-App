@@ -8,3 +8,4 @@ Flask-WTF
 Flask-Caching
 Flask-Compress
 Flask-Assets
+PyJWT
