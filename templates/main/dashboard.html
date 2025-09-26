@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <h1>Your Dashboards</h1>
+    {% if user_dashboards %}
+        <ul>
+            {% for dashboard in user_dashboards %}
+                <li>
+                    <a href="{{ url_for('main.view_dashboard', dashboard_id=dashboard.id) }}">{{ dashboard.title }}</a>
+                    - <a href="{{ url_for('main.edit_dashboard', dashboard_id=dashboard.id) }}">Edit</a>
+                    - <a href="{{ url_for('main.delete_dashboard', dashboard_id=dashboard.id) }}" onclick="return confirm('Are you sure?')">Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You don't have any dashboards yet.</p>
+    {% endif %}
+    <p><a href="{{ url_for('main.new_dashboard') }}">Create a new dashboard</a></p>
+    <p><a href="{{ url_for('main.logout') }}">Logout</a></p>
+{% endblock %}
